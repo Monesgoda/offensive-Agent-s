@@ -1,0 +1,82 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "YOUR_MODEL_HERE",
+  "mcp": {
+    "burp": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "java",
+        "-jar",
+        "/path/to/mcp-proxy.jar",
+        "--sse-url",
+        "http://127.0.0.1:9876/"
+      ]
+    },
+    "notion": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "cmd",
+        "/c",
+        "npx",
+        "-y",
+        "@notionhq/notion-mcp-server"
+      ],
+      "environment": {
+        "NOTION_TOKEN": ""
+      }
+    },
+    "playwright": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "cmd",
+        "/c",
+        "npx",
+        "-y",
+        "@playwright/mcp@latest"
+      ]
+    },
+    "filesystem": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "cmd",
+        "/c",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/path/to/your/workspace"
+      ]
+    },
+    "memory": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "cmd",
+        "/c",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "environment": {
+        "MEMORY_FILE_PATH": "~/.config/opencode/pentest/memory.jsonl"
+      }
+    },
+    "github": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "cmd",
+        "/c",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "environment": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": ""
+      }
+    }
+  }
+}

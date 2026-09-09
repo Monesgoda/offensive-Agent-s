@@ -1,0 +1,243 @@
+================================================================================
+ OpenCode Pentest Agent Framework - Repository Structure
+================================================================================
+
+This document describes the layout of this repository, maps every file to its
+original location, and explains how to set up the framework on a new machine.
+
+--------------------------------------------------------------------------------
+1. FULL FILE TREE
+--------------------------------------------------------------------------------
+
+opencode-public/
+|-- .gitignore
+|-- package.json
+|-- package-lock.json
+|-- opencode.jsonc
+|-- AGENTS.md
+|-- structure.txt
+|
+|-- agents/                          # Global agent definitions (25 files)
+|   |-- ad-attacker.md
+|   |-- ai-recon.md
+|   |-- api-security.md
+|   |-- attack-planner.md
+|   |-- bizlogic-hunter.md
+|   |-- bug-bounty.md
+|   |-- cloud-security.md
+|   |-- code-auditor.md
+|   |-- container-breakout.md
+|   |-- ctf-solver.md
+|   |-- database-attacker.md
+|   |-- detection-engineer.md
+|   |-- exploit-chainer.md
+|   |-- exploit-guide.md
+|   |-- lateral-movement.md
+|   |-- llm-redteam.md
+|   |-- malware-analyst.md
+|   |-- network-attacker.md
+|   |-- operator.md
+|   |-- osint-collector.md
+|   |-- payload-crafter.md
+|   |-- privesc-advisor.md
+|   |-- recon-advisor.md
+|   |-- vuln-scanner.md
+|   `-- web-hunter.md
+|
+`-- pentest/                         # Shared pentest framework layer
+    |-- scope.json                   # Engagement scope template (edit per engagement)
+    |-- schema.sql                   # findings.db SQL schema
+    |
+    |-- agents/                      # 24 sub-agent definitions (agent.md + SKILL.md)
+    |   |-- _scope-guard.md          # Shared utility block (not a standalone agent)
+    |   |-- ingest_knowledge.md      # Shared utility block (not a standalone agent)
+    |   |-- retrieve_scenarios.md    # Shared utility block (not a standalone agent)
+    |   |-- knowledge_ingestion_directive.md
+    |   |
+    |   |-- ad-attacker/
+    |   |   |-- agent.md
+    |   |   `-- SKILL.md
+    |   |-- ai-recon/
+    |   |   |-- agent.md
+    |   |   `-- SKILL.md
+    |   |-- api-security/
+    |   |   |-- agent.md
+    |   |   `-- SKILL.md
+    |   |-- attack-planner/
+    |   |   |-- agent.md
+    |   |   `-- SKILL.md
+    |   |-- bizlogic-hunter/
+    |   |   |-- agent.md
+    |   |   `-- SKILL.md
+    |   |-- bug-bounty/
+    |   |   |-- agent.md
+    |   |   `-- SKILL.md
+    |   |-- cloud-security/
+    |   |   |-- agent.md
+    |   |   `-- SKILL.md
+    |   |-- code-auditor/
+    |   |   |-- agent.md
+    |   |   `-- SKILL.md
+    |   |-- container-breakout/
+    |   |   |-- agent.md
+    |   |   `-- SKILL.md
+    |   |-- ctf-solver/
+    |   |   |-- agent.md
+    |   |   `-- SKILL.md
+    |   |-- database-attacker/
+    |   |   |-- agent.md
+    |   |   `-- SKILL.md
+    |   |-- detection-engineer/
+    |   |   |-- agent.md
+    |   |   `-- SKILL.md
+    |   |-- exploit-chainer/
+    |   |   |-- agent.md
+    |   |   `-- SKILL.md
+    |   |-- exploit-guide/
+    |   |   |-- agent.md
+    |   |   `-- SKILL.md
+    |   |-- lateral-movement/
+    |   |   |-- agent.md
+    |   |   `-- SKILL.md
+    |   |-- llm-redteam/
+    |   |   |-- agent.md
+    |   |   `-- SKILL.md
+    |   |-- malware-analyst/
+    |   |   |-- agent.md
+    |   |   `-- SKILL.md
+    |   |-- network-attacker/
+    |   |   |-- agent.md
+    |   |   `-- SKILL.md
+    |   |-- osint-collector/
+    |   |   |-- agent.md
+    |   |   `-- SKILL.md
+    |   |-- payload-crafter/
+    |   |   |-- agent.md
+    |   |   `-- SKILL.md
+    |   |-- privesc-advisor/
+    |   |   |-- agent.md
+    |   |   `-- SKILL.md
+    |   |-- recon-advisor/
+    |   |   |-- agent.md
+    |   |   `-- SKILL.md
+    |   |-- vuln-scanner/
+    |   |   |-- agent.md
+    |   |   `-- SKILL.md
+    |   `-- web-hunter/
+    |       |-- agent.md
+    |       `-- SKILL.md
+    |
+    |-- knowledge/                    # Knowledge engine (category folders, empty)
+    |   |-- api/
+    |   |-- bizlogic/
+    |   |-- bypasses/
+    |   |-- ctf/
+    |   |-- methodologies/
+    |   `-- web/
+    |
+    `-- scripts/                      # Tooling
+        |-- init_db.sh                # Initializes findings.db schema
+        |-- doctor.sh                 # Environment health check
+        `-- lib/                      # (empty - reserved for shared script libraries)
+
+--------------------------------------------------------------------------------
+2. ORIGINAL FILE PATH MAPPING
+--------------------------------------------------------------------------------
+
+Every file in this repository was copied from a local OpenCode installation.
+The original root was the user's OpenCode config directory:
+
+    ORIGINAL ROOT:  ~/.config/opencode/
+
+| Repository path                          | Original path (relative to ~/.config/opencode/) |
+|------------------------------------------|--------------------------------------------------|
+| opencode.jsonc                           | opencode.jsonc                                   |
+| AGENTS.md                                | AGENTS.md                                        |
+| package.json                             | package.json                                     |
+| package-lock.json                        | package-lock.json                                |
+| .gitignore                               | .gitignore                                       |
+| agents/*.md (25 files)                   | agents/*.md                                      |
+| pentest/scope.json                       | pentest/scope.json                               |
+| pentest/schema.sql                       | pentest/schema.sql                               |
+| pentest/agents/*.md (4 shared blocks)    | pentest/agents/*.md                              |
+| pentest/agents/<name>/agent.md (24)      | pentest/agents/<name>/agent.md                   |
+| pentest/agents/<name>/SKILL.md (24)      | pentest/agents/<name>/SKILL.md                   |
+| pentest/knowledge/<category>/ (6 dirs)   | pentest/knowledge/<category>/                    |
+| pentest/scripts/init_db.sh               | pentest/scripts/init_db.sh                       |
+| pentest/scripts/doctor.sh                | pentest/scripts/doctor.sh                        |
+
+NOT TRANSFERRED (excluded intentionally - contain engagement data):
+
+| Original path (relative to ~/.config/opencode/) | Reason                          |
+|--------------------------------------------------|---------------------------------|
+| pentest/findings.db                              | Engagement findings database    |
+| pentest/memory.jsonl                             | Agent memory / session history  |
+| pentest/knowledge/cleeng/                        | Engagement-specific knowledge   |
+| pentest/knowledge/*.md (12 files)                | Real-target write-ups           |
+| pentest/scripts/init_cleeng_db.py                | Engagement-specific script      |
+| pentest/scripts/log_cleeng_findings.py           | Engagement-specific script      |
+
+--------------------------------------------------------------------------------
+3. SETUP INSTRUCTIONS
+--------------------------------------------------------------------------------
+
+PREREQUISITES
+- OpenCode CLI (https://opencode.ai) - the agent runtime
+- Bash (WSL / Git Bash / Linux / macOS) for the shell scripts
+- SQLite3 CLI (optional, for direct findings.db queries)
+
+INSTALLATION
+1. Install OpenCode:
+       npm install -g opencode-ai
+
+2. Clone or copy this repository into your OpenCode config directory:
+       git clone <this-repo-url> ~/.config/opencode
+   (On Windows: %USERPROFILE%\.config\opencode)
+
+3. Install the plugin dependency (from the repo root):
+       npm install
+
+4. Configure your model provider in opencode.jsonc:
+   - Replace "YOUR_MODEL_HERE" with your model identifier
+   - Add your provider API key (e.g. ANTHROPIC_API_KEY, OPENAI_API_KEY)
+
+5. Configure MCP servers in opencode.jsonc:
+   - burp:    point to your Burp Suite MCP proxy (java + mcp-proxy.jar path)
+   - notion:  set your Notion integration token
+   - github:  set your GitHub Personal Access Token
+   - filesystem: set the workspace root you want to expose
+   - memory:  set MEMORY_FILE_PATH (default ~/.config/opencode/pentest/memory.jsonl)
+
+6. Initialize the findings database:
+       bash pentest/scripts/init_db.sh
+
+7. Run the environment health check:
+       bash pentest/scripts/doctor.sh
+
+8. Configure your first engagement in pentest/scope.json:
+   - engagement:  name of the engagement
+   - target:      primary target domain
+   - in_scope:    list of authorized targets
+   - out_of_scope: list of excluded targets
+   - rules:       rate limits, no-destructive, no-DoS, require_scope_check,
+                  require_user_approval
+
+USAGE
+- Agents are invoked by their names (e.g. "run recon tools", "web app pentest",
+  "AD attack", "generate payload").
+- All agents enforce the scope rules in pentest/scope.json before acting.
+- Findings are logged to pentest/findings.db (tables: engagements, hosts,
+  services, vulns, credentials, chains, session_log).
+- Knowledge extracted from write-ups is stored under pentest/knowledge/.
+- Before delegating to a sub-agent, the operator reads its SKILL.md at
+  .opencode/pentest/agents/<name>/SKILL.md and passes it as context.
+
+SECURITY NOTES
+- This repository is a TEMPLATE. It contains no real engagement data,
+  credentials, tokens, or target information.
+- Replace all placeholders (YOUR_MODEL_HERE, API_KEY, TARGET_DOMAIN, etc.)
+  with your own values before use.
+- Never commit findings.db, memory.jsonl, or engagement-specific knowledge
+  files to version control.
+
+================================================================================
